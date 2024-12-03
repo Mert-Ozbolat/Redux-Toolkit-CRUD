@@ -4,7 +4,7 @@ import { inputs } from '../constants';
 import { useDispatch } from 'react-redux';
 import { addTask } from '../redux/slices/crudSlice';
 
-const FormModal = ({ show, handleClose }) => {
+const FormModal = ({ show, handleClose, task }) => {
 
     const dispatch = useDispatch();
 
@@ -13,6 +13,7 @@ const FormModal = ({ show, handleClose }) => {
         const formData = new FormData(e.target);
         const taskData = Object.fromEntries(formData.entries());
         dispatch(addTask(taskData))
+        handleClose();
     }
 
 
