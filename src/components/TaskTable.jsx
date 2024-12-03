@@ -1,10 +1,18 @@
-import React from 'react'
-import { Table } from 'react-bootstrap'
-import { useSelector } from 'react-redux'
+import { Table } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteTask } from "../redux/slices/crudSlice";
+import TableRow from "./TableRow";
+import FormModal from "./FormModal";
 
 const TaskTable = () => {
+    const dispatch = useDispatch();
+    const { tasks } = useSelector((store) => store.crudReducer);
 
-    const { tasks } = useSelector((store) => store.crudRecucer)
+    const handleDelete = (id) => {
+        if (!confirm("Silmek istediğinizden emin misniz?")) return;
+
+        dispatch(deleteTask(id));
+    };
 
     return (
         <Table variant="dark" striped hover bordered responsive>
@@ -24,7 +32,7 @@ const TaskTable = () => {
                 ))}
             </tbody>
         </Table>
-    )
-}
+    );
+};
 
-export default TaskTable
+export default TaskTable;
