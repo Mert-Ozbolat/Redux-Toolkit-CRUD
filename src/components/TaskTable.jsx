@@ -1,7 +1,11 @@
 import React from 'react'
 import { Table } from 'react-bootstrap'
+import { useSelector } from 'react-redux'
 
 const TaskTable = () => {
+
+    const { tasks } = useSelector((store) => store.crudRecucer)
+
     return (
         <Table variant="dark" striped hover bordered responsive>
             <thead>
